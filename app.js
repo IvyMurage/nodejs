@@ -6,17 +6,19 @@ const app = express()
 //     res.send('<p>hello</p>')
 // })
 
+app.set('view engine', 'ejs')
+
 app.get('/', (req, res) => {
-    res.sendFile('./views/index.html', {root: __dirname})
+res.render('pages/index')
 })
 app.get('/about', (req, res) => {
-    res.sendFile('./views/about.html', {root: __dirname})
+    res.render('pages/about')
 })
 app.get('/about-us', (req, res) => {
     res.redirect('/about')
 })
 app.use((req, res) => {
-    res.sendFile('./views/not-found.html', {root: __dirname})
+    res.render('pages/not-found')
 })
 app.listen(3000, () => {
     console.log('listening on port 3000')
