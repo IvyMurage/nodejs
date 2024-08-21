@@ -1,0 +1,30 @@
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+
+<body>
+    <%- include("../partials/header.ejs") %>
+
+    <div class="create-blog content">
+        <form
+            class="flex flex-col items-center rounded-md justify-center m-auto py-10 px-8 w-fit border-2 border-[#FFEDDF]  ">
+            <div class="flex flex-col py-3  ">
+                <label for="title">Blog title:</label>
+                <input class='text-black' type="text" id="title" name="title" required>
+            </div>
+            <div class="flex flex-col py-3 ">
+                <label for="snippet">Blog snippet:</label>
+                <input class='text-black' type="text" id="snippet" name="snippet" required>
+            </div>
+
+            <div class="flex flex-col py-3 ">
+                <label for="body">Blog body:</label>
+                <textarea class='text-black' id="body" name="body" required></textarea>
+            </div>
+            <button class="rounded-md px-4 border-2 border-[#FFEDDF] py-3">Submit</button>
+        </form>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>
+</body>
+
+</html>

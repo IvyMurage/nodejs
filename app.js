@@ -14,8 +14,8 @@ res.render('pages/index')
 app.get('/about', (req, res) => {
     res.render('pages/about')
 })
-app.get('/about-us', (req, res) => {
-    res.redirect('/about')
+app.get('/blogs/create', (req, res) => {
+    res.render('pages/create')
 })
 app.use((req, res) => {
     res.render('pages/not-found')
