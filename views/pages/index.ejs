@@ -11,6 +11,17 @@
     </header>
 
     <main>
+        <h1 class="text-xl font-bold text-center py-4">My blogs</h1>
+        <div class="grid grid-cols-4">
+            <% blogs.forEach(blog=> { %>
+            <div class="py-4 border-b-[1px]">
+                <h2 class="py-4 text-lg font-bold "><%= blog.title%>
+                </h2>
+                <p><%= blog.snippet%>
+                </p>
+            </div>
+            <% }); %>
+        </div>
 
     </main>
     <footer>
