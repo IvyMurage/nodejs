@@ -1,0 +1,11 @@
+body {
+    padding: 20px;
+    background-color: #090446;
+    color: #FFEDDF;
+    font-family: "Barlow", sans-serif;
+    height: 100vh;
+}
+
+li:hover {
+    text-decoration: underline;
+}
