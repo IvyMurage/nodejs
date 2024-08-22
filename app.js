@@ -16,6 +16,22 @@ const Blog = require('./schema/blog')
 
 // app.use(morgan('tiny'))
 
+// app.get('/blog-app', (req, res) => {
+//     const blog = new Blog({
+//         title: 'My blog',
+//         snippet: 'About my blog',
+//         body: 'This is my blog'
+//     })
+
+//     blog.save()
+//         .then(result => res.send(result))
+//         .catch(error => console.log(error))
+// })
+
+app.use(express.static('public'))
+
+app.set('view engine', 'ejs')
+
 // connect to mongodb
 mongoose.connect(process.env.DATABASE_CONNECTION)
     .then(result => app.listen(3000, () => {
@@ -23,14 +39,14 @@ mongoose.connect(process.env.DATABASE_CONNECTION)
     }))
     .catch(error => console.log(error))
 
-app.use(express.static('public'))
 
-app.set('view engine', 'ejs')
+app.use(express.urlencoded({
+    extended: true
+}))
 
 app.get('/', (req, res) => {
     res.redirect('/blogs')
 })
-
 
 app.get('/blogs', (req, res) => {
     Blog.find()
@@ -40,26 +56,9 @@ app.get('/blogs', (req, res) => {
         .catch(error => console.log(error))
 })
 
-app.use((req, res, next) => {
-    console.log(req.path)
-    console.log(req.hostname)
-    next()
+app.post('/blogs', (req, res) => {
+    console.log(req.body)
 })
-
-
-
-app.get('/blog-app', (req, res) => {
-    const blog = new Blog({
-        title: 'My blog',
-        snippet: 'About my blog',
-        body: 'This is my blog'
-    })
-
-    blog.save()
-        .then(result => res.send(result))
-        .catch(error => console.log(error))
-})
-
 
 app.get('/about', (req, res) => {
     res.render('pages/about')
