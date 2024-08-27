@@ -6,8 +6,7 @@ require('dotenv').config();
 const morgan = require("morgan");
 
 const app = express()
-const Blog = require('./schema/blog')
-
+const blogRoutes = require('./routes/blogRoutes')
 // app.get('/', (req, res) => {
 //     res.send('<p>hello</p>')
 // })
@@ -48,47 +47,11 @@ app.get('/', (req, res) => {
     res.redirect('/blogs')
 })
 
-app.get('/blogs', (req, res) => {
-    Blog.find().sort({
-            createdAt: -1
-        })
-        .then(blogs => res.render('pages/index', {
-            blogs
-        }))
-        .catch(error => console.log(error))
-})
-
-app.get('/blogs/create', (req, res) => {
-    res.render('pages/createBlog')
-})
-
-
-app.get('/blogs/:id', (req, res) => {
-    const {id }= req.params
-    Blog.findById(id)
-    .then (result => res.render('pages/blogDetails', {blog: result}))
-    .catch(error => console.log(error))
-})
-
-
-app.post('/blogs', (req, res) => {
-    console.log(req.body)
-    const blog = new Blog(req.body)
-    blog.save()
-    .then(result => res.redirect('/blogs'))
-    .catch(error => console.log(error))
-})
-
-
-app.delete('/blogs/:id', (req, res) => {
-    const {id} = req.params
-    Blog.findByIdAndDelete(id)
-    .then(result => res.json({redirect: '/blogs'}))
-    .catch(error => console.log(error))
-})
 app.get('/about', (req, res) => {
     res.render('pages/about')
 })
+
+app.use('/blogs', blogRoutes)
 
 app.use((req, res) => {
     res.render('pages/not-found')
