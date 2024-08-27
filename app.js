@@ -49,23 +49,31 @@ app.get('/', (req, res) => {
 })
 
 app.get('/blogs', (req, res) => {
-    Blog.find()
+    Blog.find().sort({
+            createdAt: -1
+        })
         .then(blogs => res.render('pages/index', {
             blogs
         }))
         .catch(error => console.log(error))
 })
 
+app.get('/blogs/create', (req, res) => {
+    res.render('pages/createBlog')
+})
+
 app.post('/blogs', (req, res) => {
     console.log(req.body)
+    const blog = new Blog(req.body)
+    blog.save()
+    .then(result => res.redirect('/blogs'))
+    .catch(error => console.log(error))
 })
 
 app.get('/about', (req, res) => {
     res.render('pages/about')
 })
-app.get('/blogs/create', (req, res) => {
-    res.render('pages/create')
-})
+
 app.use((req, res) => {
     res.render('pages/not-found')
 })

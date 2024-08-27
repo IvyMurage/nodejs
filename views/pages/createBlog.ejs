@@ -2,13 +2,15 @@
 <html lang="en">
 
 <head>
-    <%- include("../partials/head.ejs") %>
+    <%- include('../partials/head'); %>
 </head>
 
-<body>
-    <%- include("../partials/header.ejs") %>
+<body class="bg-red">
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
 
-    <form method="post"
+    <form action="/blogs" method="post"
         class="flex flex-col items-center rounded-md justify-center m-auto py-10 px-8 w-fit border-2 border-[#FFEDDF]  ">
         <div class="flex flex-col py-3  ">
             <label for="title">Blog title:</label>
@@ -25,9 +27,8 @@
         </div>
         <button class="rounded-md px-4 border-2 border-[#FFEDDF] py-3">Submit</button>
     </form>
-
     <footer>
-        <%- include("../partials/footer.ejs") %>
+        <%- include('../partials/footer'); %>
     </footer>
 </body>
 
