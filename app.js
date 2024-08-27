@@ -62,13 +62,6 @@ app.get('/blogs/create', (req, res) => {
     res.render('pages/createBlog')
 })
 
-app.post('/blogs', (req, res) => {
-    console.log(req.body)
-    const blog = new Blog(req.body)
-    blog.save()
-    .then(result => res.redirect('/blogs'))
-    .catch(error => console.log(error))
-})
 
 app.get('/blogs/:id', (req, res) => {
     const {id }= req.params
@@ -77,6 +70,22 @@ app.get('/blogs/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+
+app.post('/blogs', (req, res) => {
+    console.log(req.body)
+    const blog = new Blog(req.body)
+    blog.save()
+    .then(result => res.redirect('/blogs'))
+    .catch(error => console.log(error))
+})
+
+
+app.delete('/blogs/:id', (req, res) => {
+    const {id} = req.params
+    Blog.findByIdAndDelete(id)
+    .then(result => res.json({redirect: '/blogs'}))
+    .catch(error => console.log(error))
+})
 app.get('/about', (req, res) => {
     res.render('pages/about')
 })
