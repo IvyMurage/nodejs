@@ -70,6 +70,13 @@ app.post('/blogs', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/blogs/:id', (req, res) => {
+    const {id }= req.params
+    Blog.findById(id)
+    .then (result => res.render('pages/blogDetails', {blog: result}))
+    .catch(error => console.log(error))
+})
+
 app.get('/about', (req, res) => {
     res.render('pages/about')
 })

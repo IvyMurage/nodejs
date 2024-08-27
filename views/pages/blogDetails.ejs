@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <h1 class="text-xl font-bold text-center py-4">My blogs</h1>
+        <div class="items-center">
+            <div class="py-4 border-b-[1px]">
+                <h2 class="py-4 text-lg font-bold "><%= blog.title%>
+                </h2>
+                <h3 class="font-bold"><%= blog.snippet%>
+                </h3>
+                <p>
+                    <%= blog.body%>
+                </p>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+
+</html>
