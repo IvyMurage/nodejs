@@ -7,25 +7,8 @@ const morgan = require("morgan");
 
 const app = express()
 const blogRoutes = require('./routes/blogRoutes')
-// app.get('/', (req, res) => {
-//     res.send('<p>hello</p>')
-// })
 
-// this is a middleware 
-
-// app.use(morgan('tiny'))
-
-// app.get('/blog-app', (req, res) => {
-//     const blog = new Blog({
-//         title: 'My blog',
-//         snippet: 'About my blog',
-//         body: 'This is my blog'
-//     })
-
-//     blog.save()
-//         .then(result => res.send(result))
-//         .catch(error => console.log(error))
-// })
+app.use(morgan('tiny'))
 
 app.use(express.static('public'))
 
